@@ -16,6 +16,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/main',
     name: 'main',
+    redirect: '/main/analysis/overview',
     component: Layout,
     children: []
   },

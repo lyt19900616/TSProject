@@ -45,12 +45,12 @@ export const asyncRoutes: RouteRecordRaw[] = [
   {
     path: 'story/chat', // 你的故事
     name: '你的故事',
-    component: () => import('@/views/chart/perfile.vue')
+    component: () => import('@/views/chat/perfile.vue')
   },
   {
     path: 'story/list', // 故事列表
     name: '故事列表',
-    component: () => import('@/views/chart/story-list.vue')
+    component: () => import('@/views/chat/story-list.vue')
   }
 ]
 
