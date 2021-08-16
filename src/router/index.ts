@@ -1,26 +1,44 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import storage from '@/utils/storage'
+import Layout from '@/views/layout/Layout.vue'
 
-const routes: Array<RouteRecordRaw> = [
+// 静态路由
+const routes: RouteRecordRaw[] = [
   {
-    path: "/",
-    name: "Home",
-    component: Home,
+    path: '/',
+    redirect: '/main'
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/login.vue')
   },
-];
-
+  {
+    path: '/main',
+    name: 'main',
+    component: Layout,
+    children: []
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import('@/views/404.vue')
+  }
+]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
+  routes
+})
 
-export default router;
+const whiteList: string[] = []
+router.beforeEach((to) => {
+  // 权限判断
+  if (to.path !== '/login') { // 不是去往登录页
+    const token = storage.localGet('token')
+    if (!token) { // 没有token 的情况
+      if (whiteList.indexOf(to.path) === -1) { // 不在白名单
+        return '/login'
+      }
+    }
+  }
+})
+export default router

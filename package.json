@@ -5,11 +5,19 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
+    "@types/crypto-js": "^4.0.2",
+    "@types/lodash": "^4.14.172",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "crypto-js": "^4.1.1",
+    "element-plus": "^1.0.2-beta.65",
+    "normalize.css": "^8.0.1",
     "vue": "^3.0.0",
+    "vue-ls": "^3.2.2",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
@@ -30,7 +38,7 @@
     "eslint-plugin-vue": "^7.0.0",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.2",
     "typescript": "~4.1.5"
   }
 }
